@@ -62,7 +62,9 @@ class MenuMasterView extends GetView<MenuMasterController> {
                   width: 350,
                   height: 125,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed(Routes.ADD_MENU_SALAD);
+                    },
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xFF437C28),
                     ),
