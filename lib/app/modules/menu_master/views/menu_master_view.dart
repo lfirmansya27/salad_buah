@@ -63,7 +63,7 @@ class MenuMasterView extends GetView<MenuMasterController> {
                   height: 125,
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.toNamed(Routes.ADD_MENU_SALAD);
+                      Get.toNamed(Routes.VIEW_MENU_SALAD);
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xFF437C28),
@@ -84,7 +84,7 @@ class MenuMasterView extends GetView<MenuMasterController> {
                           ),
                         ),
                         Text(
-                          "Kelola Menu Salad",
+                          "Kelola Menu Produk",
                           style: TextStyle(
                             fontFamily: 'Shippori Mincho',
                             fontSize: 20,

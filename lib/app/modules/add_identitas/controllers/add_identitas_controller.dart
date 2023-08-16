@@ -32,8 +32,8 @@ class AddIdentitasController extends GetxController {
   void increment() => count.value++;
 
   Future<void> add_identitas() async {
-    DocumentReference identitas = firestore.collection("identitas").doc();
     var uuid = Uuid().v1();
+    DocumentReference identitas = firestore.collection("identitas").doc(uuid);
     await identitas.set({
       "identitas_id": uuid,
       "txtIdentitas": txtIdentitas.text,

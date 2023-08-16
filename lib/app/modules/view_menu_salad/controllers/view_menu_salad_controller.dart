@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class ViewMenuSaladController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+
   final count = 0.obs;
   @override
   void onInit() {
@@ -26,8 +27,6 @@ class ViewMenuSaladController extends GetxController {
   Future<QuerySnapshot<Map<String, dynamic>>> getAllResult() async {
     QuerySnapshot<Map<String, dynamic>> query = await firestore
         .collection("menuProduk")
-        .doc("menu_id")
-        .collection("todos")
         .orderBy(
           "created_at",
           descending: true,

@@ -6,6 +6,10 @@ import '../modules/add_menu_salad/bindings/add_menu_salad_binding.dart';
 import '../modules/add_menu_salad/views/add_menu_salad_view.dart';
 import '../modules/add_pelanggan/bindings/add_pelanggan_binding.dart';
 import '../modules/add_pelanggan/views/add_pelanggan_view.dart';
+import '../modules/detail_menu_salad/bindings/detail_menu_salad_binding.dart';
+import '../modules/detail_menu_salad/views/detail_menu_salad_view.dart';
+import '../modules/edit_menu_salad/bindings/edit_menu_salad_binding.dart';
+import '../modules/edit_menu_salad/views/edit_menu_salad_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/menu_laporan/bindings/menu_laporan_binding.dart';
@@ -18,6 +22,8 @@ import '../modules/menu_utilitas/bindings/menu_utilitas_binding.dart';
 import '../modules/menu_utilitas/views/menu_utilitas_view.dart';
 import '../modules/view_menu_salad/bindings/view_menu_salad_binding.dart';
 import '../modules/view_menu_salad/views/view_menu_salad_view.dart';
+import '../modules/view_pelanggan/bindings/view_pelanggan_binding.dart';
+import '../modules/view_pelanggan/views/view_pelanggan_view.dart';
 
 part 'app_routes.dart';
 
@@ -71,6 +77,21 @@ class AppPages {
       name: _Paths.ADD_PELANGGAN,
       page: () => const AddPelangganView(),
       binding: AddPelangganBinding(),
+    ),
+    GetPage(
+      name: _Paths.VIEW_PELANGGAN,
+      page: () => const ViewPelangganView(),
+      binding: ViewPelangganBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_MENU_SALAD,
+      page: () => const EditMenuSaladView(),
+      binding: EditMenuSaladBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_MENU_SALAD,
+      page: () => const DetailMenuSaladView(),
+      binding: DetailMenuSaladBinding(),
     ),
   ];
 }

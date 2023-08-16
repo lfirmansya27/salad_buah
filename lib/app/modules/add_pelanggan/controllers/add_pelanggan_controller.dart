@@ -31,9 +31,10 @@ class AddPelangganController extends GetxController {
   void increment() => count.value++;
 
   Future<void> add_penggan() async {
-    DocumentReference pelanggan = firestore.collection("pelanggan").doc();
     var uuid = Uuid().v1();
-    await pelanggan.set({
+    CollectionReference<Map<String, dynamic>> pelanggan =
+        await firestore.collection("pelanggan");
+    await pelanggan.doc(uuid).set({
       "identitas_id": uuid,
       "txtIdentitas": txtPelanggan.text,
       "txtAlamat": txtAlamat.text,
