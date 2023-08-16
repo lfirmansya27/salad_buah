@@ -54,7 +54,6 @@ class ViewMenuSaladView extends GetView<ViewMenuSaladController> {
                             SizedBox(height: 16),
                         itemBuilder: (context, index) {
                           var menuData = data[index].data();
-                          String desc;
                           return InkWell(
                             onTap: () => {
                               Get.toNamed(

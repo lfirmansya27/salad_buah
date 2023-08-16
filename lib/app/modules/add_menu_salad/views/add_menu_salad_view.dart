@@ -6,6 +6,7 @@ import '../controllers/add_menu_salad_controller.dart';
 
 class AddMenuSaladView extends GetView<AddMenuSaladController> {
   const AddMenuSaladView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +75,20 @@ class AddMenuSaladView extends GetView<AddMenuSaladController> {
           ),
           Container(
             child: Padding(
+              padding: const EdgeInsets.only(right: 25, left: 25, top: 10),
+              child: TextField(
+                controller: controller.txtStok,
+                decoration: const InputDecoration(
+                  border: UnderlineInputBorder(),
+                  labelText: ("Stok"),
+                  labelStyle: TextStyle(
+                      fontFamily: 'Shippori Mincho', color: Color(0x4C437C28)),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            child: Padding(
               padding: const EdgeInsets.only(top: 40, right: 20, left: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -114,7 +129,9 @@ class AddMenuSaladView extends GetView<AddMenuSaladController> {
                       width: 150,
                       height: 75,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.imgFromGallery();
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.red,
                         ),
