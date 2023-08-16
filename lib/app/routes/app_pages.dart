@@ -4,6 +4,8 @@ import '../modules/add_identitas/bindings/add_identitas_binding.dart';
 import '../modules/add_identitas/views/add_identitas_view.dart';
 import '../modules/add_menu_salad/bindings/add_menu_salad_binding.dart';
 import '../modules/add_menu_salad/views/add_menu_salad_view.dart';
+import '../modules/add_pelanggan/bindings/add_pelanggan_binding.dart';
+import '../modules/add_pelanggan/views/add_pelanggan_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/menu_laporan/bindings/menu_laporan_binding.dart';
@@ -14,6 +16,8 @@ import '../modules/menu_transaksi/bindings/menu_transaksi_binding.dart';
 import '../modules/menu_transaksi/views/menu_transaksi_view.dart';
 import '../modules/menu_utilitas/bindings/menu_utilitas_binding.dart';
 import '../modules/menu_utilitas/views/menu_utilitas_view.dart';
+import '../modules/view_menu_salad/bindings/view_menu_salad_binding.dart';
+import '../modules/view_menu_salad/views/view_menu_salad_view.dart';
 
 part 'app_routes.dart';
 
@@ -57,6 +61,16 @@ class AppPages {
       name: _Paths.ADD_MENU_SALAD,
       page: () => const AddMenuSaladView(),
       binding: AddMenuSaladBinding(),
+    ),
+    GetPage(
+      name: _Paths.VIEW_MENU_SALAD,
+      page: () => const ViewMenuSaladView(),
+      binding: ViewMenuSaladBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_PELANGGAN,
+      page: () => const AddPelangganView(),
+      binding: AddPelangganBinding(),
     ),
   ];
 }

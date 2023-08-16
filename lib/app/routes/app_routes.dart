@@ -10,6 +10,8 @@ abstract class Routes {
   static const MENU_UTILITAS = _Paths.MENU_UTILITAS;
   static const ADD_IDENTITAS = _Paths.ADD_IDENTITAS;
   static const ADD_MENU_SALAD = _Paths.ADD_MENU_SALAD;
+  static const VIEW_MENU_SALAD = _Paths.VIEW_MENU_SALAD;
+  static const ADD_PELANGGAN = _Paths.ADD_PELANGGAN;
 }
 
 abstract class _Paths {
@@ -21,4 +23,6 @@ abstract class _Paths {
   static const MENU_UTILITAS = '/menu-utilitas';
   static const ADD_IDENTITAS = '/add-identitas';
   static const ADD_MENU_SALAD = '/add-menu-salad';
+  static const VIEW_MENU_SALAD = '/view-menu-salad';
+  static const ADD_PELANGGAN = '/add-pelanggan';
 }
