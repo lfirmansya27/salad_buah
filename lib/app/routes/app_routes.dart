@@ -15,6 +15,10 @@ abstract class Routes {
   static const VIEW_PELANGGAN = _Paths.VIEW_PELANGGAN;
   static const EDIT_MENU_SALAD = _Paths.EDIT_MENU_SALAD;
   static const DETAIL_MENU_SALAD = _Paths.DETAIL_MENU_SALAD;
+  static const SPLASH = _Paths.SPLASH;
+  static const OPENING = _Paths.OPENING;
+  static const SIGNIN = _Paths.SIGNIN;
+  static const SIGUP = _Paths.SIGUP;
 }
 
 abstract class _Paths {
@@ -31,4 +35,8 @@ abstract class _Paths {
   static const VIEW_PELANGGAN = '/view-pelanggan';
   static const EDIT_MENU_SALAD = '/edit-menu-salad';
   static const DETAIL_MENU_SALAD = '/detail-menu-salad';
+  static const SPLASH = '/splash';
+  static const OPENING = '/opening';
+  static const SIGNIN = '/signin';
+  static const SIGUP = '/sigup';
 }

@@ -20,6 +20,14 @@ import '../modules/menu_transaksi/bindings/menu_transaksi_binding.dart';
 import '../modules/menu_transaksi/views/menu_transaksi_view.dart';
 import '../modules/menu_utilitas/bindings/menu_utilitas_binding.dart';
 import '../modules/menu_utilitas/views/menu_utilitas_view.dart';
+import '../modules/opening/bindings/opening_binding.dart';
+import '../modules/opening/views/opening_view.dart';
+import '../modules/signin/bindings/signin_binding.dart';
+import '../modules/signin/views/signin_view.dart';
+import '../modules/sigup/bindings/sigup_binding.dart';
+import '../modules/sigup/views/sigup_view.dart';
+import '../modules/splash/bindings/splash_binding.dart';
+import '../modules/splash/views/splash_view.dart';
 import '../modules/view_menu_salad/bindings/view_menu_salad_binding.dart';
 import '../modules/view_menu_salad/views/view_menu_salad_view.dart';
 import '../modules/view_pelanggan/bindings/view_pelanggan_binding.dart';
@@ -30,7 +38,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(
@@ -92,6 +100,26 @@ class AppPages {
       name: _Paths.DETAIL_MENU_SALAD,
       page: () => const DetailMenuSaladView(),
       binding: DetailMenuSaladBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => const SplashView(),
+      binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.OPENING,
+      page: () => const OpeningView(),
+      binding: OpeningBinding(),
+    ),
+    GetPage(
+      name: _Paths.SIGNIN,
+      page: () => const SiginView(),
+      binding: SigninBinding(),
+    ),
+    GetPage(
+      name: _Paths.SIGUP,
+      page: () => const SigupView(),
+      binding: SigupBinding(),
     ),
   ];
 }
