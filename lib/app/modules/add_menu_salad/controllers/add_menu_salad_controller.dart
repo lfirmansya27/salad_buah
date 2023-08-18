@@ -6,17 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
+import 'package:final_project/app/widgets/costum_toast.dart';
 
 class AddMenuSaladController extends GetxController {
-  //TODO: Implement AddMenuSaladController
   TextEditingController txtNamaMenu = TextEditingController();
   TextEditingController txtDeskripsi = TextEditingController();
   TextEditingController txtHarga = TextEditingController();
   TextEditingController txtStok = TextEditingController();
-
+  RxBool isLoading = false.obs;
+  RxBool isLoadingCreateMenu = false.obs;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
 
+  // ignore: unused_field
   File? _photo;
   final ImagePicker _picker = ImagePicker();
 
@@ -34,6 +36,10 @@ class AddMenuSaladController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+    txtNamaMenu.dispose();
+    txtDeskripsi.dispose();
+    txtHarga.dispose();
+    txtStok.dispose();
   }
 
   void increment() => count.value++;
@@ -43,23 +49,54 @@ class AddMenuSaladController extends GetxController {
 
     if (pickedFile != null) {
       _photo = File(pickedFile.path);
-      //uploadFile();
     } else {
       print('No image selected.');
     }
   }
 
-  Future<void> add_menu() async {
-    var uuid = Uuid().v1();
+  Future<void> menuToast() async {
+    if (txtNamaMenu.text.isNotEmpty &&
+        txtDeskripsi.text.isNotEmpty &&
+        txtHarga.text.isNotEmpty &&
+        txtStok.text.isNotEmpty) {
+      isLoading.value = true;
 
-    DocumentReference menuProduk = firestore.collection("menuProduk").doc(uuid);
-    await menuProduk.set({
-      "menu_id": uuid,
-      "txtNamaMenu": txtNamaMenu.text,
-      "txtAlamat": txtDeskripsi.text,
-      "txtHarga": int.parse(txtHarga.text),
-      "txtStok": int.parse(txtStok.text),
-      "created_at": DateTime.now().toIso8601String(),
-    });
+      if (isLoadingCreateMenu.isFalse) {
+        await add_menu();
+        isLoading.value = false;
+      }
+    } else {
+      isLoading.value = false;
+      CustomToast.errorToast('Error', 'you need to fill all form');
+    }
+  }
+
+  add_menu() async {
+    isLoadingCreateMenu.value = true;
+    String adminEmail = auth.currentUser!.email!;
+    try {
+      String uid = auth.currentUser!.uid;
+      CollectionReference<Map<String, dynamic>> childrenCollection =
+          await firestore.collection("users").doc(uid).collection("menuProduk");
+      var uuidMenu = Uuid().v1();
+      await childrenCollection.doc(uuidMenu).set({
+        "menu_id": uuidMenu,
+        "txtNamaMenu": txtNamaMenu.text,
+        "txtDeskripsi": txtDeskripsi.text,
+        "txtHarga": int.parse(txtHarga.text),
+        "txtStok": int.parse(txtStok.text),
+        "created_at": DateTime.now().toIso8601String(),
+      });
+      Get.back();
+      //Get.back();
+      CustomToast.successToast('Success', 'Berhasil Menambahkan Identitas');
+      isLoadingCreateMenu.value = false;
+    } on FirebaseAuthException catch (e) {
+      isLoadingCreateMenu.value = false;
+      CustomToast.errorToast('Error', 'error : ${e.toString()}');
+    } catch (e) {
+      isLoadingCreateMenu.value = false;
+      CustomToast.errorToast('Error', 'error : ${e.toString()}');
+    }
   }
 }

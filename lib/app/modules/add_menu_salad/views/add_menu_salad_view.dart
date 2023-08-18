@@ -75,20 +75,6 @@ class AddMenuSaladView extends GetView<AddMenuSaladController> {
           ),
           Container(
             child: Padding(
-              padding: const EdgeInsets.only(right: 25, left: 25, top: 10),
-              child: TextField(
-                controller: controller.txtStok,
-                decoration: const InputDecoration(
-                  border: UnderlineInputBorder(),
-                  labelText: ("Stok"),
-                  labelStyle: TextStyle(
-                      fontFamily: 'Shippori Mincho', color: Color(0x4C437C28)),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            child: Padding(
               padding: const EdgeInsets.only(top: 40, right: 20, left: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -97,29 +83,33 @@ class AddMenuSaladView extends GetView<AddMenuSaladController> {
                     child: SizedBox(
                       width: 150,
                       height: 75,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          controller.add_menu();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF437C28),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.save,
-                              size: 30,
-                            ),
-                            Text(
-                              "Simpan",
-                              style: TextStyle(
-                                fontFamily: 'Shippori Mincho',
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400,
+                      child: Obx(
+                        () => ElevatedButton(
+                          onPressed: () {
+                            if (controller.isLoading.isFalse) {
+                              controller.add_menu();
+                            }
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.save,
+                                size: 30,
                               ),
-                            ),
-                          ],
+                              Text(
+                                (controller.isLoading.isFalse)
+                                    ? 'Simpan'
+                                    : 'Loading...',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Shippori Mincho',
+                                ),
+                              ),
+                            ],
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              primary: Color(0xFF437C28)),
                         ),
                       ),
                     ),

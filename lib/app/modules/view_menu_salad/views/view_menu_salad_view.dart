@@ -33,18 +33,26 @@ class ViewMenuSaladView extends GetView<ViewMenuSaladController> {
                         color: Color.fromARGB(75, 96, 115, 87),
                       ),
                     ),
+                    onChanged: (value) {
+                      controller.updateSearch(value);
+                    },
                   ),
                 ),
               ),
               FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                future: controller.getAllResult(),
+                future: controller.getResult(),
                 builder: (context, snapshot) {
                   switch (snapshot.connectionState) {
                     case ConnectionState.waiting:
                       return Center(child: CircularProgressIndicator());
                     case ConnectionState.active:
                     case ConnectionState.done:
-                      var data = snapshot.data!.docs;
+                      //var data = snapshot.data!.docs;
+                      final data = snapshot.data!.docs.where((element) =>
+                          element['txtNamaMenu']
+                              .toString()
+                              .toLowerCase()
+                              .contains(controller.search.text.toLowerCase()));
                       return ListView.separated(
                         itemCount: data.length,
                         shrinkWrap: true,
@@ -53,7 +61,7 @@ class ViewMenuSaladView extends GetView<ViewMenuSaladController> {
                         separatorBuilder: (context, index) =>
                             SizedBox(height: 16),
                         itemBuilder: (context, index) {
-                          var menuData = data[index].data();
+                          var menuData = data.elementAt(index).data();
                           return InkWell(
                             onTap: () => {
                               Get.toNamed(

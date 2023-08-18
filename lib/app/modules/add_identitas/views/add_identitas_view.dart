@@ -82,29 +82,33 @@ class AddIdentitasView extends GetView<AddIdentitasController> {
                     child: SizedBox(
                       width: 150,
                       height: 75,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          controller.add_identitas();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF437C28),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.save,
-                              size: 30,
-                            ),
-                            Text(
-                              "Simpan",
-                              style: TextStyle(
-                                fontFamily: 'Shippori Mincho',
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400,
+                      child: Obx(
+                        () => ElevatedButton(
+                          onPressed: () {
+                            if (controller.isLoading.isFalse) {
+                              controller.add_identitas();
+                            }
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.save,
+                                size: 30,
                               ),
-                            ),
-                          ],
+                              Text(
+                                (controller.isLoading.isFalse)
+                                    ? 'Simpan'
+                                    : 'Loading...',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Shippori Mincho',
+                                ),
+                              ),
+                            ],
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              primary: Color(0xFF437C28)),
                         ),
                       ),
                     ),
