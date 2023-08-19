@@ -107,7 +107,7 @@ class MenuMasterView extends GetView<MenuMasterController> {
                   height: 125,
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.toNamed(Routes.ADD_PELANGGAN);
+                      Get.toNamed(Routes.VIEW_PELANGGAN);
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xFF437C28),

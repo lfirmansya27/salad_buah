@@ -10,8 +10,9 @@ class EditMenuSaladView extends GetView<EditMenuSaladController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('EditMenuSaladView'),
+        title: const Text('Detail Produk'),
         centerTitle: true,
+        backgroundColor: Color(0xFF437C28),
       ),
       body: Column(
         children: [

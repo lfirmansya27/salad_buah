@@ -8,8 +8,12 @@ import '../modules/add_pelanggan/bindings/add_pelanggan_binding.dart';
 import '../modules/add_pelanggan/views/add_pelanggan_view.dart';
 import '../modules/detail_menu_salad/bindings/detail_menu_salad_binding.dart';
 import '../modules/detail_menu_salad/views/detail_menu_salad_view.dart';
+import '../modules/detail_pelanggan/bindings/detail_pelanggan_binding.dart';
+import '../modules/detail_pelanggan/views/detail_pelanggan_view.dart';
 import '../modules/edit_menu_salad/bindings/edit_menu_salad_binding.dart';
 import '../modules/edit_menu_salad/views/edit_menu_salad_view.dart';
+import '../modules/edit_pelanggan/bindings/edit_pelanggan_binding.dart';
+import '../modules/edit_pelanggan/views/edit_pelanggan_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/menu_laporan/bindings/menu_laporan_binding.dart';
@@ -120,6 +124,16 @@ class AppPages {
       name: _Paths.SIGUP,
       page: () => const SigupView(),
       binding: SigupBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_PELANGGAN,
+      page: () => const DetailPelangganView(),
+      binding: DetailPelangganBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PELANGGAN,
+      page: () => const EditPelangganView(),
+      binding: EditPelangganBinding(),
     ),
   ];
 }

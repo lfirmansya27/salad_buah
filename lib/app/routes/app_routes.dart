@@ -19,6 +19,8 @@ abstract class Routes {
   static const OPENING = _Paths.OPENING;
   static const SIGNIN = _Paths.SIGNIN;
   static const SIGUP = _Paths.SIGUP;
+  static const DETAIL_PELANGGAN = _Paths.DETAIL_PELANGGAN;
+  static const EDIT_PELANGGAN = _Paths.EDIT_PELANGGAN;
 }
 
 abstract class _Paths {
@@ -39,4 +41,6 @@ abstract class _Paths {
   static const OPENING = '/opening';
   static const SIGNIN = '/signin';
   static const SIGUP = '/sigup';
+  static const DETAIL_PELANGGAN = '/detail-pelanggan';
+  static const EDIT_PELANGGAN = '/edit-pelanggan';
 }

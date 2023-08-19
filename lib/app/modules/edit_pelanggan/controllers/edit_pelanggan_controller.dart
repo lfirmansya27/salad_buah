@@ -1,24 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/app/widgets/costum_toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:uuid/uuid.dart';
-import 'package:final_project/app/widgets/costum_toast.dart';
 
-class AddPelangganController extends GetxController {
+class EditPelangganController extends GetxController {
+  final Map<String, dynamic> argsData = Get.arguments;
+
+  RxBool isLoading = false.obs;
+  RxBool isLoadingEditPelanggan = false.obs;
+  FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   TextEditingController txtPelanggan = TextEditingController();
   TextEditingController txtAlamat = TextEditingController();
   TextEditingController txtNoTelp = TextEditingController();
-  RxBool isLoading = false.obs;
-  RxBool isLoadingCreatePelanggan = false.obs;
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-  FirebaseAuth auth = FirebaseAuth.instance;
-
+  TextEditingController pelanggan_id = TextEditingController();
   final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    pelanggan_id.text = argsData["pelanggan_id"];
+    txtPelanggan.text = argsData["txtPelanggan"];
+    txtAlamat.text = argsData["txtAlamat"];
+    txtNoTelp.text = argsData["txtNoTelp"];
   }
 
   @override
@@ -34,14 +38,15 @@ class AddPelangganController extends GetxController {
     txtNoTelp.dispose();
   }
 
+  void increment() => count.value++;
   Future<void> menuToast() async {
     if (txtPelanggan.text.isNotEmpty &&
         txtAlamat.text.isNotEmpty &&
         txtNoTelp.text.isNotEmpty) {
       isLoading.value = true;
 
-      if (isLoadingCreatePelanggan.isFalse) {
-        await add_pelanggan();
+      if (isLoadingEditPelanggan.isFalse) {
+        await edit_pelanggan();
         isLoading.value = false;
       }
     } else {
@@ -50,30 +55,29 @@ class AddPelangganController extends GetxController {
     }
   }
 
-  void increment() => count.value++;
-  add_pelanggan() async {
-    isLoadingCreatePelanggan.value = true;
+  edit_pelanggan() async {
+    isLoadingEditPelanggan.value = true;
     String adminEmail = auth.currentUser!.email!;
     try {
       String uid = auth.currentUser!.uid;
       CollectionReference<Map<String, dynamic>> pelanggan =
           await firestore.collection("users").doc(uid).collection("pelanggan");
-      var uuidPelanggan = Uuid().v1();
-      await pelanggan.doc(uuidPelanggan).set({
-        "pelanggan_id": uuidPelanggan,
+
+      await pelanggan.doc(argsData["pelanggan_id"]).update({
         "txtPelanggan": txtPelanggan.text,
         "txtAlamat": txtAlamat.text,
         "txtNoTelp": txtNoTelp.text,
-        "created_at": DateFormat.yMMMMEEEEd().format(DateTime.now())
+        "created_at": DateTime.now().toIso8601String(),
       });
       Get.back();
-      CustomToast.successToast('Success', 'Berhasil Menambahkan Identitas');
-      isLoadingCreatePelanggan.value = false;
+      Get.back();
+      CustomToast.successToast(
+          'Success', 'Berhasil Memperbarui Data Pelanggan');
     } on FirebaseAuthException catch (e) {
-      isLoadingCreatePelanggan.value = false;
+      isLoadingEditPelanggan.value = false;
       CustomToast.errorToast('Error', 'error : ${e.toString()}');
     } catch (e) {
-      isLoadingCreatePelanggan.value = false;
+      isLoadingEditPelanggan.value = false;
       CustomToast.errorToast('Error', 'error : ${e.toString()}');
     }
   }

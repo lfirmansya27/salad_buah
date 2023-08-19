@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 import 'package:final_project/app/widgets/costum_toast.dart';
 
@@ -85,10 +86,11 @@ class AddMenuSaladController extends GetxController {
         "txtDeskripsi": txtDeskripsi.text,
         "txtHarga": int.parse(txtHarga.text),
         "txtStok": int.parse(txtStok.text),
-        "created_at": DateTime.now().toIso8601String(),
+        "created_at": DateFormat.yMMMMEEEEd().format(DateTime.now())
       });
       Get.back();
       //Get.back();
+      update();
       CustomToast.successToast('Success', 'Berhasil Menambahkan Identitas');
       isLoadingCreateMenu.value = false;
     } on FirebaseAuthException catch (e) {

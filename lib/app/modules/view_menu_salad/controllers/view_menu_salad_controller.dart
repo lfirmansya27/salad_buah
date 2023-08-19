@@ -27,17 +27,18 @@ class ViewMenuSaladController extends GetxController {
 
   TextEditingController search = TextEditingController();
   DateTime end = DateTime.now();
-  Future<QuerySnapshot<Map<String, dynamic>>> getResult() async {
-    String uid = auth.currentUser!.uid;
 
-    QuerySnapshot<Map<String, dynamic>> query = await firestore
+  Stream<QuerySnapshot<Map<String, dynamic>>> getResult() async* {
+    String uid = auth.currentUser!.uid;
+    yield* firestore
+        //QuerySnapshot<Map<String, dynamic>> query = await firestore
         .collection("users")
         .doc(uid)
         .collection("menuProduk")
         .where("created_at", isLessThan: end.toIso8601String())
         .orderBy("created_at", descending: true)
-        .get();
-    return query;
+        .snapshots();
+    //return query;
   }
 
   void updateSearch(String query) {

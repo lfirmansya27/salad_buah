@@ -70,7 +70,7 @@ class AddPelangganView extends GetView<AddPelangganController> {
                       height: 75,
                       child: ElevatedButton(
                         onPressed: () {
-                          controller.add_penggan();
+                          controller.add_pelanggan();
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFF437C28),
